@@ -1,0 +1,17 @@
+#! /bin/sh
+case "$1" in
+    start)
+        echo "Starting aesdsocket"
+        start-stop-daemon --start --user root -x /usr/bin/aesdsocket -- -d
+        ;;
+    stop)
+        echo "Stopping aesdsocket"
+        start-stop-daemon --stop --user root --name aesdsocket --retry 5
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+        ;;
+esac
+
+exit 0
